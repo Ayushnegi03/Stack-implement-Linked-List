@@ -1,0 +1,95 @@
+//Using stack implement Linked List
+class Node
+{
+    constructor()
+    {
+        this.data=0;
+        this.link=null;
+    }
+}
+class Stack_Linkedlist
+{
+    constructor()
+    {
+        this.top=null;
+    }
+    Push(x)
+    {
+        let tmp = new Node();
+        if (tmp == null) {
+            console.log("Heap Overflow");
+            return;
+        }
+        tmp.data = x;
+        tmp.link = this.top;
+        this.top = tmp;
+    }
+    Empty()
+    {
+         return this.top == null;
+    }   
+    Peek()
+    {
+        if (!this.Empty()) {
+            return this.top.data;
+        }
+        else {
+            console.log("Stack is empty");
+            return -1;
+        }
+    }
+    Pop() 
+    {
+        if (this.top == null) {
+            console.log("Stack Underflow");
+            return;
+        }
+        this.top = this.top.link;
+    }
+     
+    Display()
+    {
+        if (this.top == null) {
+            console.log("Stack Underflow");            
+        }
+        else {
+            let tmp = this.top;
+            while (tmp != null) {
+
+                console.log(tmp.data+"->");
+
+                tmp = tmp.link;
+            }
+        }
+    }
+}
+let obj = new Stack_Linkedlist();
+obj.Push(111);
+obj.Push(222);
+obj.Push(333);
+obj.Push(444);
+obj.Push(555);
+obj.Push(666);
+obj.Display();
+console.log("Top element is ", obj.Peek());
+obj.Pop();
+console.log("Remove Element:"+obj.Peek());
+obj.Pop();
+console.log("Top element is ", obj.Peek());
+obj.Display();
+console.log("Top element is ", obj.Peek());
+//Output-
+//666->
+//555->
+//444->
+//333->
+//222->
+//111->
+//Top element is  666
+//Remove Element:555
+//Top element is  444
+//444->
+//333->
+//222->
+//111->
+//Top element is  444
