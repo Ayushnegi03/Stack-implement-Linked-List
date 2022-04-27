@@ -1,0 +1,91 @@
+//Stack implement Linked List
+//A stack is represented using nodes of a linked list. 
+//Each node consists of two fields: 
+//data and next(storing address of next node).
+#include <iostream>
+using namespace std;
+struct Node
+{
+    int DATA;
+    Node* link;
+};
+Node* TOP;
+void PUSH(int DATA)
+{
+    Node* temp = new Node();
+    if (!temp)
+    {
+        cout << "\nStack Overflow";
+        exit(1);
+    }
+    temp->DATA = DATA;
+    temp->link = TOP;
+    TOP = temp;
+}
+int Empty()
+{
+    return TOP == NULL;
+}
+int PEEK()
+{
+    if (!Empty())
+        return TOP->DATA;
+    else
+        exit(1);
+}
+void POP()
+{
+    Node* temp;
+    if (TOP == NULL)
+    {
+        cout << "\nStack Underflow" << endl;
+        exit(1);
+    }
+    else
+    {
+        temp = TOP;
+        TOP = TOP->link;
+        free(temp);
+    }
+}
+void Display()
+{
+    Node* temp;
+    if (TOP == NULL)
+    {
+        cout << "\nStack Underflow";
+        exit(1);
+    }
+    else
+    {
+        temp = TOP;
+        while (temp != NULL)
+        {
+            cout << temp->DATA << "-> ";
+            temp = temp->link;
+        }
+    }
+}
+int main()
+{
+    cout<<"Here is Stack implement Linked List"<<endl;
+    PUSH(11);
+    PUSH(22);
+    PUSH(33);
+    PUSH(44);
+    PUSH(55);
+    PUSH(66);
+    Display();
+    cout << "\nTop element is "<< PEEK() << endl;
+    POP();
+    POP();
+    Display();
+    cout << "\nTop element is "<< PEEK() << endl;
+    return 0;
+}
+//Output-
+//Here is Stack implement Linked List
+//66-> 55-> 44-> 33-> 22-> 11-> 
+//Top element is 66
+//44-> 33-> 22-> 11-> 
+//Top element is 44
